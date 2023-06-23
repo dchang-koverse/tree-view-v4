@@ -1,23 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import { makeStyles } from '@material-ui/core/styles';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { TreeItem, TreeView } from '@material-ui/lab';
+
+const useStyles = makeStyles({
+  root: {
+    height: 240,
+    flexGrow: 1,
+    maxWidth: 400,
+  },
+});
 
 function App() {
+  const classes = useStyles();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TreeView
+      className={classes.root}
+      defaultCollapseIcon={<ExpandMoreIcon />}
+      defaultExpandIcon={<ChevronRightIcon />}
+    >
+      <TreeItem nodeId="1" label="Applications">
+        <TreeItem nodeId="2" label="Calendar" />
+        <TreeItem nodeId="3" label="Chrome" />
+        <TreeItem nodeId="4" label="Webstorm" />
+      </TreeItem>
+      <TreeItem nodeId="5" label="Documents">
+        <TreeItem nodeId="10" label="OSS" />
+        <TreeItem nodeId="6" label="Material-UI">
+          <TreeItem nodeId="7" label="src">
+            <TreeItem nodeId="8" label="index.js" />
+            <TreeItem nodeId="9" label="tree-view.js" />
+          </TreeItem>
+        </TreeItem>
+      </TreeItem>
+    </TreeView>
     </div>
   );
 }
